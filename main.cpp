@@ -27,7 +27,7 @@ int main(){
 
     Camera camera;
     camera.SetProjection(70.0, 800.0/600.0, 0.1, 100000000000000.0);
-    camera.position.y = 0.0;
+    camera.position.y = 10000000000.0;
 
     //Planet planet(2000.0f);
     Terrain terrain(0.0, 0.0, 0.0, 1000000000000.0, 10);

@@ -119,6 +119,8 @@ char* Terrain::VertexSrc =
 "   position.xz *= uSize;\n"
 "   position.xz -= uSize*0.5;\n"
 "   gl_Position = vec4(uProj*uView*uModel*dvec4(position, 1.0));\n"
+"\n"
+"   //Logarithmic depth buffer\n"
 "   float w = gl_Position.w;\n"
 "   gl_Position.z = (2.0*log(1.0*w+1.0) / log(1.0*100000000000000.0+1.0) - 1.0)*w;\n"
 "}";
