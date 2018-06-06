@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1528316793 source:c:\users\raouf\desktop\games (c++)\planetsim\main.cpp
+1528321800 source:c:\users\raouf\desktop\games (c++)\planetsim\main.cpp
 	<iostream>
 	<GL/gl3w.h>
 	<glm/vec3.hpp>
@@ -475,16 +475,16 @@
 	"Shader.h"
 	"Camera.h"
 
-1528149166 c:\users\raouf\desktop\games (c++)\planetsim\include\shader.h
+1528319129 c:\users\raouf\desktop\games (c++)\planetsim\include\shader.h
 	<string>
 	<map>
 
-1528149096 c:\users\raouf\desktop\games (c++)\planetsim\include\camera.h
+1528319422 c:\users\raouf\desktop\games (c++)\planetsim\include\camera.h
 	<glm/mat4x4.hpp>
 	"Shader.h"
 	"Window.h"
 
-1528154288 source:c:\users\raouf\desktop\games (c++)\planetsim\src\camera.cpp
+1528321330 source:c:\users\raouf\desktop\games (c++)\planetsim\src\camera.cpp
 	"Camera.h"
 	<glm/gtc/matrix_transform.hpp>
 	<GLFW/glfw3.h>
@@ -498,7 +498,7 @@
 	<dlfcn.h>
 	<dlfcn.h>
 
-1528317253 source:c:\users\raouf\desktop\games (c++)\planetsim\src\planet.cpp
+1528317761 source:c:\users\raouf\desktop\games (c++)\planetsim\src\planet.cpp
 	<GL/gl3w.h>
 	"Planet.h"
 	<cmath>
@@ -590,7 +590,7 @@
 
 1483569764 c:\users\raouf\desktop\games (c++)\planetsim\include\glm\simd\integer.h
 
-1528149186 source:c:\users\raouf\desktop\games (c++)\planetsim\src\shader.cpp
+1528319118 source:c:\users\raouf\desktop\games (c++)\planetsim\src\shader.cpp
 	"Shader.h"
 	<GL/gl3w.h>
 	<iostream>
@@ -599,16 +599,22 @@
 	"Window.h"
 	<cstring>
 
-1528316784 c:\users\raouf\desktop\games (c++)\planetsim\include\terrain.h
+1528320584 c:\users\raouf\desktop\games (c++)\planetsim\include\terrain.h
 	<vector>
 	<glm/vec3.hpp>
 	<glm/mat4x4.hpp>
 	"Camera.h"
+	"Rect.h"
 
-1528316777 source:c:\users\raouf\desktop\games (c++)\planetsim\src\terrain.cpp
+1528321762 source:c:\users\raouf\desktop\games (c++)\planetsim\src\terrain.cpp
 	<GL/gl3w.h>
 	"Terrain.h"
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtc/type_ptr.hpp>
 	<iostream>
+
+1528319359 c:\users\raouf\desktop\games (c++)\planetsim\include\rect.h
+
+1528319342 source:c:\users\raouf\desktop\games (c++)\planetsim\src\rect.cpp
+	"Rect.h"
 

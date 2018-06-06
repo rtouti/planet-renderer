@@ -4,8 +4,8 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
 
-Terrain::Terrain(double size, int segments, double x, double y, double z)
-: size(size), segments(segments), x(x), y(y), z(z)
+Terrain::Terrain(double x, double y, double z, double size, int segments)
+: x(x), y(y), z(z), size(size), segments(segments)
 {
     if(Shader::Get("terrain") == nullptr)
         Shader::Add("terrain", Terrain::VertexSrc, Terrain::FragmentSrc);
@@ -25,18 +25,18 @@ Terrain::~Terrain()
 }
 
 void Terrain::BuildMesh(){
-    double segmentSize = size/segments;
-    double halfSize = size*0.5;
-    for(double zz = -halfSize; zz <= halfSize; zz+=segmentSize){
-        for(double xx = -halfSize; xx <= halfSize; xx+=segmentSize){
+    double segmentSize = 1.0/segments;
+    double halfSize = 0.5;
+    for(double zz = 0.0; zz <= 1.0; zz+=segmentSize){
+        for(double xx = 0.0; xx <= 1.0; xx+=segmentSize){
             vertices.push_back(xx);
-            vertices.push_back(y);
+            vertices.push_back(0.0);
             vertices.push_back(zz);
         }
     }
     unsigned int index = 0;
-    for(double zz = -halfSize; zz < halfSize; zz+=segmentSize){
-        for(double xx = -halfSize; xx < halfSize; xx+=segmentSize){
+    for(double zz = 0.0; zz < 1.0-0.001; zz+=segmentSize){
+        for(double xx = 0.0; xx < 1.0-0.001; xx+=segmentSize){
             indices.push_back(index);
             indices.push_back(index+segments+1);
             indices.push_back(index+segments+2);
@@ -69,12 +69,37 @@ void Terrain::Render(Camera& camera){
     shader->SetUniformMat4dv("uProj", glm::value_ptr(camera.GetProjectionMatrix()));
     shader->SetUniformMat4dv("uView", glm::value_ptr(camera.GetViewMatrix()));
     shader->SetUniformMat4dv("uModel", glm::value_ptr(model));
+    shader->SetUniform1d("uSize", size);
     glBindVertexArray(vao);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-    glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
-    //glDrawArrays(GL_TRIANGLES, 0, 3);
+
+    _Render(camera, Rect(0.0, 0.0, 1.0), shader, 0);
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
+}
+
+void Terrain::_Render(Camera& camera, const Rect& rect, Shader* shader, int depth){
+    glm::dvec3 cameraPosition = camera.GetPosition();
+
+    double halfRectSize = rect.size*0.5;
+    double halfSize = size*0.5;
+    glm::dvec3 center = glm::dvec3((rect.x+halfRectSize)*size - halfSize, 0.0, (rect.y+halfRectSize)*size - halfSize);
+    glm::dvec3 corner = glm::dvec3((rect.x+rect.size)*size - halfSize, 0.0, (rect.y+rect.size)*size - halfSize);
+    double centerToCorner = glm::distance(center, corner);
+    double centerToCamera = glm::distance(center, cameraPosition);
+
+    if(depth <= 7 && centerToCamera < centerToCorner*2.0){
+        for(int q = 0; q < 4; q++){
+            _Render(camera, rect.GetQuadrant(q), shader, depth+1);
+        }
+    }
+    else {
+        shader->SetUniform3d("uRect", rect.x, rect.y, rect.size);
+        //std::cout << rect.x << " " << rect.y << " " << rect.size << std::endl;
+        glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+    }
 }
 
 
@@ -86,10 +111,14 @@ char* Terrain::VertexSrc =
 "uniform dmat4 uProj;\n"
 "uniform dmat4 uView;\n"
 "uniform dmat4 uModel;\n"
+"uniform dvec3 uRect;\n"
+"uniform double uSize;\n"
 "\n"
 "void main(){\n"
-"   //gl_Position = vec4(dvec4(aPos, 1.0));\n"
-"   gl_Position = vec4(uProj*uView*uModel*dvec4(aPos, 1.0));\n"
+"   dvec3 position = dvec3(uRect.x+aPos.x*uRect.z, 0.0, uRect.y+aPos.z*uRect.z);\n"
+"   position.xz *= uSize;\n"
+"   position.xz -= uSize*0.5;\n"
+"   gl_Position = vec4(uProj*uView*uModel*dvec4(position, 1.0));\n"
 "   float w = gl_Position.w;\n"
 "   gl_Position.z = (2.0*log(1.0*w+1.0) / log(1.0*100000000000000.0+1.0) - 1.0)*w;\n"
 "}";

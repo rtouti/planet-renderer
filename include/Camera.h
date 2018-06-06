@@ -16,8 +16,10 @@ class Camera
         glm::dmat4 GetViewMatrix();
         glm::dmat4 GetProjectionMatrix();
         void SetProjection(double fov, double ratio, double near, double far);
-    private:
+
         glm::dvec3 position;
+
+    private:
         glm::dmat4 projection, view;
         double pitch, yaw, sensitivity, speed;
 };

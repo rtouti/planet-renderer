@@ -14,6 +14,8 @@ public:
     int GetUniformLocation(const char* name);
     void SetUniform1f(const char* name, float a);
     void SetUniform1i(const char* name, int a);
+    void SetUniform1d(const char* name, double a);
+    void SetUniform3d(const char* name, double a, double b, double c);
     void SetUniformMat4fv(const char* name, const float* value);
     void SetUniformMat4dv(const char* name, const double* value);
 private:
