@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1528329335 source:c:\users\raouf\desktop\games (c++)\planetsim\main.cpp
+1528512000 source:c:\users\raouf\desktop\games (c++)\planetsim\main.cpp
 	<iostream>
 	<GL/gl3w.h>
 	<glm/vec3.hpp>
@@ -10,6 +10,7 @@
 	"Planet.h"
 	"Terrain.h"
 	"Shader.h"
+	"Texture.h"
 
 1522977684 c:\users\raouf\desktop\games (c++)\planetsim\include\gl\gl3w.h
 	<GL/glcorearb.h>
@@ -468,12 +469,12 @@
 	<GL/glext.h>
 	<GL/glu.h>
 
-1528317162 c:\users\raouf\desktop\games (c++)\planetsim\include\planet.h
-	<glm/vec3.hpp>
-	<cmath>
+1528418035 c:\users\raouf\desktop\games (c++)\planetsim\include\planet.h
 	<vector>
-	"Shader.h"
+	<glm/vec3.hpp>
+	<glm/mat4x4.hpp>
 	"Camera.h"
+	"Rect.h"
 
 1528319129 c:\users\raouf\desktop\games (c++)\planetsim\include\shader.h
 	<string>
@@ -484,7 +485,7 @@
 	"Shader.h"
 	"Window.h"
 
-1528321920 source:c:\users\raouf\desktop\games (c++)\planetsim\src\camera.cpp
+1528562276 source:c:\users\raouf\desktop\games (c++)\planetsim\src\camera.cpp
 	"Camera.h"
 	<glm/gtc/matrix_transform.hpp>
 	<GLFW/glfw3.h>
@@ -498,15 +499,16 @@
 	<dlfcn.h>
 	<dlfcn.h>
 
-1528317761 source:c:\users\raouf\desktop\games (c++)\planetsim\src\planet.cpp
+1528562251 source:c:\users\raouf\desktop\games (c++)\planetsim\src\planet.cpp
 	<GL/gl3w.h>
 	"Planet.h"
-	<cmath>
-	<glm/glm.hpp>
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtc/type_ptr.hpp>
 	<iostream>
-	<algorithm>
+	<string>
+	<sstream>
+	"Texture.h"
+	"TextureGenerator.h"
 
 1502891318 c:\users\raouf\desktop\games (c++)\planetsim\include\glm\glm.hpp
 	"detail/_fixes.hpp"
@@ -595,7 +597,7 @@
 	<GL/gl3w.h>
 	<iostream>
 
-1527258778 source:c:\users\raouf\desktop\games (c++)\planetsim\src\window.cpp
+1528329474 source:c:\users\raouf\desktop\games (c++)\planetsim\src\window.cpp
 	"Window.h"
 	<cstring>
 
@@ -616,5 +618,43 @@
 1528319359 c:\users\raouf\desktop\games (c++)\planetsim\include\rect.h
 
 1528319342 source:c:\users\raouf\desktop\games (c++)\planetsim\src\rect.cpp
+	"Rect.h"
+
+1528494122 source:c:\users\raouf\desktop\games (c++)\planetsim\src\texture.cpp
+	<GL/gl3w.h>
+	<stb/stb_image.h>
+	"Texture.h"
+
+1528205247 c:\users\raouf\desktop\games (c++)\planetsim\include\stb\stb_image.h
+	"stb_image.h"
+	<stdio.h>
+	<stdarg.h>
+	<stddef.h>
+	<stdlib.h>
+	<string.h>
+	<limits.h>
+	<math.h>
+	<stdio.h>
+	<assert.h>
+	<stdint.h>
+	<emmintrin.h>
+	<intrin.h>
+	<arm_neon.h>
+
+1528494081 c:\users\raouf\desktop\games (c++)\planetsim\include\texture.h
+	<string>
+	<map>
+
+1528561278 source:c:\users\raouf\desktop\games (c++)\planetsim\src\texturegenerator.cpp
+	"GL/gl3w.h"
+	"TextureGenerator.h"
+	"Shader.h"
+	"Planet.h"
+	"Texture.h"
+	<glm/gtc/type_ptr.hpp>
+	<iostream>
+
+1528494090 c:\users\raouf\desktop\games (c++)\planetsim\include\texturegenerator.h
+	"Texture.h"
 	"Rect.h"
 

@@ -50,6 +50,8 @@
 		<Unit filename="include/Rect.h" />
 		<Unit filename="include/Shader.h" />
 		<Unit filename="include/Terrain.h" />
+		<Unit filename="include/Texture.h" />
+		<Unit filename="include/TextureGenerator.h" />
 		<Unit filename="include/Window.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Camera.cpp" />
@@ -57,6 +59,8 @@
 		<Unit filename="src/Rect.cpp" />
 		<Unit filename="src/Shader.cpp" />
 		<Unit filename="src/Terrain.cpp" />
+		<Unit filename="src/Texture.cpp" />
+		<Unit filename="src/TextureGenerator.cpp" />
 		<Unit filename="src/Window.cpp" />
 		<Unit filename="src/gl3w/gl3w.c">
 			<Option compilerVar="CC" />

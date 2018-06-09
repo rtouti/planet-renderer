@@ -9,6 +9,7 @@
 #include "Planet.h"
 #include "Terrain.h"
 #include "Shader.h"
+#include "Texture.h"
 
 
 int main(){
@@ -22,15 +23,18 @@ int main(){
 
     glViewport(0, 0, 800, 600);
     glEnable(GL_DEPTH_TEST);
+    //glEnable(GL_CULL_FACE);
 
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+    Texture::Add("test", "res/heightmap.png");
 
     Camera camera;
-    camera.SetProjection(70.0, 800.0/600.0, 0.1, 100000000000000.0);
-    camera.position.y = 10000000000.0;
+    camera.SetProjection(70.0, 800.0/600.0, 0.1, 1000000000000.0);
+    camera.position.z = 1000000000*0.5;
 
-    //Planet planet(2000.0f);
-    Terrain terrain(0.0, 0.0, 0.0, 1000000000000.0, 10);
+    Planet planet(0.0, 0.0, 0.0, 1000000000.0, 20.0);
+    //Terrain terrain(0.0, 0.0, 0.0, 1000000000000.0, 10);
 
     int frames = 0;
     double time = glfwGetTime();
@@ -59,8 +63,8 @@ int main(){
         camera.Update(window);
         //planet.Update(camera);
 
-        //planet.Render(camera);
-        terrain.Render(camera);
+        planet.Render(camera);
+        //terrain.Render(camera);
 
 
         window.SwapBuffers();

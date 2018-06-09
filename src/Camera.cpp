@@ -7,7 +7,7 @@
 
 
 Camera::Camera()
-: position(glm::dvec3(0.0f, 0.0f, 0.0f)), projection(glm::dmat4(1.0)), view(glm::dmat4(1.0)), pitch(0.0), yaw(0.0), sensitivity(0.5), speed(100000000.0)
+: position(glm::dvec3(0.0f, 0.0f, 0.0f)), projection(glm::dmat4(1.0)), view(glm::dmat4(1.0)), pitch(0.0), yaw(0.0), sensitivity(0.5), speed(50000.0)
 {
 
 }
